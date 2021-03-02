@@ -56,16 +56,17 @@ def run_words():
             talk('The answer is')
             talk(a / b)
         elif 'cosine' in operation:
-            talk('The radian of cosine is'+ c)
+            talk('The radian of cosine is')
             talk(round(math.cos(c), 3))
         elif 'sine' in operation:
-            talk('The radian of sine is'+ c)
+            talk('The radian of sine is')
             talk(round(math.sin(c), 3))
         elif 'tangent' in operation:
-            talk('The radian of tangent is'+ c)
+            talk('The radian of tangent is')
             talk(round(math.tan(c), 3))
         else:
             talk('i did not understand your operation, try again when you are ready')
+
     else:
         talk('i did not understand, but you can ask me anytime')
 
