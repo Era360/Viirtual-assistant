@@ -1,17 +1,20 @@
 import cv2
 
 cap = cv2.VideoCapture(0)
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
 while True:
     ret, frame = cap.read()
-    width = int(cap.get(3))
-    height = int(cap.get(4))
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (255, 0, 0), 5)
+        roi_gray = gray[y:y+w , x:x+w]
 
-#putting text on webcam
-    img = cv2.putText(frame, "go right", (300, 200), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 150, 0), 3)
+        
 
-    cv2.imshow('frame', frame)
-
+    cv2.imshow('track', frame)
     if cv2.waitKey(1) == ord('q'):
         break
 
