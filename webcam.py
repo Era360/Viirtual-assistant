@@ -1,12 +1,13 @@
+# importing required modules
+
 import cv2
-import numpy as np
 
 cap = cv2.VideoCapture(0)
 
 # assigning the trained data sets
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-fullbody_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fullbody.xml')
+
+#fullbody_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fullbody.xml')
 
 # initializing iteration of the full process
 while True:
@@ -40,7 +41,8 @@ while True:
         else:
             print('your out')
         print(x, y, x+w, y+h)
-    
+
+    # displaying the screen for tracking.
     cv2.imshow('track', frame)
     if cv2.waitKey(1) == ord('q'):
         break

@@ -7,7 +7,7 @@ so as to talk to its device
 import datetime
 import pyttsx3
 import math
-
+import pyjokes
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -25,17 +25,21 @@ words = str(input('Enter sentence: ')) # here at first am using typing input for
 
 def run_words(): 
     
+    # helping option
     if 'help' in words:
-        talk('You can ask me about this place, look for you something, read for you even calculate for you some math')  
+        talk('You can ask me about this place,tell you time, look for you something, read for you even calculate for you some math')  
         talk('what can i do for you')
+
         second = str(input())
+
         if 'calculate this' in second:
             talk('do you need sum, product, difference or quotient? i can even tell you trigonometric functions like cosine,sine and tangent')
+            talk('what do you want?')
+
         operation = input()
-        if 'cosine' and 'sine' and 'tangent' in operation:
-            talk('tell me the angle')
+
         else:
-            talk('tell me the two numbers')
+            talk('tell me the numbers')
 
         numbers = input()
 
@@ -70,6 +74,18 @@ def run_words():
             talk('i did not understand your operation, try again when you are ready')
 
 
+    # telling time
+    elif 'time' in words:
+        time = datetime.datetime.now().strftime('%I:%M %p')
+        talk('Current time is ' + time)
+
+
+    # telling jokes
+    elif 'joke' in words:
+        talk(pyjokes.get_joke())
+    
+
+    # calculating mathematics
     elif 'calculate this' in words:
         talk('do you need sum, product, difference or quotient? i can even tell you trigonometric functions like cosine,sine and tangent')
         operation = input()
@@ -98,7 +114,7 @@ def run_words():
             talk(a * b)
         elif 'quotient' in operation:
             talk('The answer is')
-            talk(a / b)
+            talk(round(a / b , 3))
         elif 'cosine' in operation:
             talk('The radian of cosine is')
             talk(round(math.cos(c), 3))
@@ -109,8 +125,10 @@ def run_words():
             talk('The radian of tangent is')
             talk(round(math.tan(c), 3))
 
+
+    # last  option
     else:
-        talk('i did not understand, but you can ask me anytime')
+        talk('i did not understand, but you can ask me anything related. you can say help to know what i can do')
 
 
 while True:
